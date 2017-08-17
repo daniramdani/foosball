@@ -1,0 +1,32 @@
+<div class="container">
+  <h2 class="text-left">Teams</h2> 
+  <%= link_to "Create Team", new_team_path, class: "btn btn-primary pull-right" %>
+  <% if @teams.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Player One</th>
+          <th>Player Two</th>
+          <th>Total Wins</th>
+          <th>Team Win %</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @teams.each_with_index do |team, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= team.team_player_one %></td>
+            <td><%= team.team_player_two %></td>
+            <td><%= team.wins %></td>
+            <td><%= team.team_win_percentage %>%</td>
+            <td><%= link_to "View", team_path(team) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    No Data!
+  <% end %>
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+  <h2 class="text-left">Matches</h2> 
+  <%= link_to "Create Match", new_match_path, class: "btn btn-primary pull-right" %>
+  <% if @matches.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Match</th>
+          <th>Date</th>
+          <th>Score</th>
+          <th>Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @matches.each do |match| %>
+            <td>
+              <%= match.team_one_player_one %>
+              <% if match.team_one_player_two  %> 
+                <%= "& #{match.team_one_player_two}" %> 
+              <% end %> 
+              vs 
+              <%= match.team_two_player_one  %>
+              <% if match.team_two_player_two  %> 
+                <%= "& #{match.team_two_player_two}" %> 
+              <% end %>
+            </td>
+            <td><%= match.created_at.strftime("%m/%d/%Y") %></td>
+            <td><%= match.team_one_score%> : <%= match.team_two_score %></td>
+            <td><%= match.match_winner %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    No Data!
+  <% end %>
+</div>

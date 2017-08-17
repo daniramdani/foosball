@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="col-sm-3">
+    <h2 class="text-left">Add Match</h2>
+    <%= form_for [@match], :html => {:multipart => true} do |f| %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr>
+            <td><%= f.select :team_one, Team.all.collect {|team| ["#{team.team_player_one}" + " " + "#{team.team_player_two}", team.id] }, class: "form-control" %></td>
+            <td><%= f.select :team_one_score, (0..10), class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td><%= f.select :team_two, Team.all.collect {|team| ["#{team.team_player_one}" + " " + "#{team.team_player_two}", team.id] }, class: "form-control" %></td>
+            <td><%= f.select :team_two_score, (0..10), class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>Game Amount</td>
+            <td><%= f.select :team_two_score, (1..3), class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><%= f.submit "Submit", class: "form-control btn btn-primary" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

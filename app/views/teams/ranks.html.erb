@@ -1,0 +1,27 @@
+<div class="container">
+  <h2 class="text-left">Ranks</h2> 
+  <% if @teams.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Player One</th>
+          <th>Player Two</th>
+          <th>Total Wins</th>
+          <th>Win %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% Team.sorted_by_percentage_correct.each do |team, index| %>
+          <tr>
+            <td><%= team.users.first.firstname %></td>
+            <td><%= team.users.last.firstname %></td>
+            <td><%= team.wins %></td>
+            <td><%= team.team_win_percentage %>%</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+    No Data!
+  <% end %>
+</div>

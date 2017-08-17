@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="col-sm-8">
+    <h2 class="text-left"><%= @team.users.first.firstname %>  &  <%= @team.users.last.try(:firstname) %> </h2>
+    <p>Matches Played: <%= @team.matches_played %></p> 
+    <p>Matches Won: <%= @team.try(:wins) %></p> 
+    <p>Matches Lost: <%=  @team.matches_lost %></p> 
+    <p>Win Percentage: <%= @team.team_win_percentage %>%</p>  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Match</th>
+          <th>Date</th>
+          <th>Score</th>
+          <th>Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @team.matches.each_with_index do |match, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td>
+              <%= match.team_one_player_one %> & 
+              <% if match.team_one_player_two %> 
+                <%= match.team_one_player_two %> 
+              <% end %>
+              vs
+              <%= match.team_two_player_one %> & 
+              <% if match.team_two_player_two%> 
+                <%= match.team_two_player_two %> 
+              <% end %>
+            </td>
+            <td><%= match.created_at.strftime("%m/%d/%Y")  %></td>
+            <td><%= match.team_one_score %> : <%= match.team_two_score %></td>
+            <td><%= match.match_winner %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
